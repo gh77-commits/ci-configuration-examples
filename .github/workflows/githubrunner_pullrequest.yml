@@ -1,4 +1,4 @@
-
+/
 name: PullRequest GitHub Runner - Diff to Ancestor, Publish and attach Report, and Run Project Tests
 
 # Controls when the workflow will run
@@ -28,7 +28,7 @@ jobs:
       - name: Compare Models to Ancestors
         uses: matlab-actions/run-command@v1
         with:
-          command: branch ="${{ github.head_ref }}"; diffGitHub_pullrequest(branch)
+          command: branch ="${{ github.head_ref }}"; code/diffGitHub_pullrequest(branch)
       - name: Upload Comparison Reports
         uses: actions/upload-artifact@v4
         with:
