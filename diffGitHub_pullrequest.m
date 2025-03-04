@@ -1,6 +1,6 @@
 function diffGitHub_pullrequest(branchname)
     % Open project
-    proj = openProject(pwd);
+    % proj = openProject(pwd);
 
     % List modified models since branch diverged from main
     % Use *** to search recursively for modified SLX files starting in the current folder
@@ -19,7 +19,8 @@ function diffGitHub_pullrequest(branchname)
     % Create a temporary folder to store the ancestors of the modified models
     % If you have models with the same name in different folders, consider
     % creating multiple folders to prevent overwriting temporary models
-    tempdir = fullfile(proj.RootFolder, "modelscopy");
+    % tempdir = fullfile(proj.RootFolder, "modelscopy");
+     tempdir = fullfile(pwd, "modelscopy");
     mkdir(tempdir)
     
     % Generate a comparison report for every modified model file
