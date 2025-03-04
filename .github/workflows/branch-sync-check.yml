@@ -28,7 +28,7 @@ jobs:
     - name: Check for differences
       run: |
         if ! git diff --quiet origin/dev..origin/main; then
-          echo "Branches are not in sync"
+          echo "Branches are not in sync. Update your development branch."
           exit 1
         fi
 
