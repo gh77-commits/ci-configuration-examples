@@ -26,6 +26,10 @@ jobs:
          export DISPLAY=:99
          echo "DISPLAY=:99" >> $GITHUB_ENV
          sleep 100
+      - name: Run MATLAB Display Test
+        uses: matlab-actions/run-command@v1
+        with:
+          command: disp('MATLAB display test')
       - name: Compare Models to Ancestors
         uses: matlab-actions/run-command@v1
         with:
