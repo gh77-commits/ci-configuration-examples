@@ -1,0 +1,39 @@
+name: Check Branch Sync
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows you to manually trigger the workflow
+
+
+
+jobs:
+  check-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Fetch all branches
+      run: |
+        git fetch --all
+
+    - name: Check for differences
+      run: |
+        if ! git diff --quiet origin/dev..origin/main; then
+          echo "Branches are not in sync. Update your development branch."
+          exit 1
+        fi
+
+    - name: Send notification
+      if: failure()
+      run: |
+        echo "Branches 'main' and 'dev' are not in sync"
+        # Here you can add commands to send a notification, for example, using curl to send a message to a Slack webhook
